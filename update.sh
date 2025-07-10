@@ -66,7 +66,7 @@ update_feeds() {
         # 确保文件以换行符结尾
         [ -z "$(tail -c 1 "$BUILD_DIR/$FEEDS_CONF")" ] || echo "" >>"$BUILD_DIR/$FEEDS_CONF"
         echo "src-git small8 https://github.com/kenzok8/small-package" >>"$BUILD_DIR/$FEEDS_CONF"
-        echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
+        # echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
     fi
 
     # 添加bpf.mk解决更新报错
@@ -163,7 +163,7 @@ install_small8() {
         tuic-client chinadns-ng ipt2socks tcping trojan-plus simple-obfs shadowsocksr-libev \
         luci-app-passwall alist luci-app-alist smartdns luci-app-smartdns v2dat mosdns luci-app-mosdns \
         adguardhome luci-app-adguardhome ddns-go luci-app-ddns-go taskd luci-lib-xterm luci-lib-taskd \
-        luci-app-store quickstart luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest \
+        luci-app-store quickstart luci-app-quickstart  luci-app-cloudflarespeedtest \
         luci-theme-argon netdata luci-app-netdata lucky luci-app-lucky luci-app-openclash luci-app-homeproxy \
         luci-app-amlogic nikki luci-app-nikki tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf \
         easytier luci-app-easytier msd_lite luci-app-msd_lite cups luci-app-cupsd
