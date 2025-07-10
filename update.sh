@@ -24,7 +24,7 @@ FEEDS_CONF="feeds.conf.default"
 GOLANG_REPO="https://github.com/sbwml/packages_lang_golang"
 GOLANG_BRANCH="24.x"
 THEME_SET="argon"
-LAN_ADDR="192.168.1.1"
+LAN_ADDR="192.168.22.1"
 
 clone_repo() {
     if [[ ! -d $BUILD_DIR ]]; then
@@ -66,6 +66,7 @@ update_feeds() {
         # 确保文件以换行符结尾
         [ -z "$(tail -c 1 "$BUILD_DIR/$FEEDS_CONF")" ] || echo "" >>"$BUILD_DIR/$FEEDS_CONF"
         echo "src-git small8 https://github.com/kenzok8/small-package" >>"$BUILD_DIR/$FEEDS_CONF"
+        
         # echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
     fi
 
@@ -84,6 +85,7 @@ update_feeds() {
     # 更新 feeds
     ./scripts/feeds clean
     ./scripts/feeds update -a
+    ./scripts/feeds install -a
 }
 
 remove_unwanted_packages() {
@@ -92,6 +94,7 @@ remove_unwanted_packages() {
         "luci-app-ssr-plus" "luci-app-vssr" "luci-theme-argon" "luci-app-daed" "luci-app-dae"
         "luci-app-alist" "luci-app-argon-config" "luci-app-homeproxy" "luci-app-haproxy-tcp"
         "luci-app-openclash" "luci-app-mihomo" "luci-app-appfilter" "luci-app-msd_lite"
+        "luci-app-filebrowser"
     )
     local packages_net=(
         "haproxy" "xray-core" "xray-plugin" "dns2socks" "alist" "hysteria"
@@ -99,7 +102,7 @@ remove_unwanted_packages() {
         "sing-box" "v2ray-core" "v2ray-geodata" "v2ray-plugin" "tuic-client"
         "chinadns-ng" "ipt2socks" "tcping" "trojan-plus" "simple-obfs"
         "shadowsocksr-libev" "dae" "daed" "mihomo" "geoview" "tailscale" "open-app-filter"
-        "msd_lite"
+        "msd_lite" "luci-app-filebrowser"
     )
     local packages_utils=(
         "cups"
@@ -166,7 +169,8 @@ install_small8() {
         luci-app-store quickstart luci-app-quickstart  luci-app-cloudflarespeedtest \
         luci-theme-argon netdata luci-app-netdata lucky luci-app-lucky luci-app-openclash luci-app-homeproxy \
         luci-app-amlogic nikki luci-app-nikki tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf \
-        easytier luci-app-easytier msd_lite luci-app-msd_lite cups luci-app-cupsd
+        easytier luci-app-easytier msd_lite luci-app-msd_lite cups luci-app-cupsd luci-app-filebrowser luci-app-nlbwmon \
+        luci-app-ttyd
 }
 
 install_feeds() {
